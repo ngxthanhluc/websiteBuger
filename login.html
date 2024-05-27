@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" href="./css/login.css" />
+    </head>
+    <body>
+        <div class="box">
+            <div class="form">
+                <h2>Sign in</h2>
+                <div class="inputBox">
+                    <input type="text" required="required" name="username" id="username"/>
+                    <span>Username</span>
+                    <i></i>
+                </div>
+                <div class="inputBox">
+                    <input type="password" required="required" name="password" id="password"/>
+                    <span>Password</span>
+                    <i></i>
+                </div>
+                <div class="links">
+                    <a href="#">Forgot Password</a>
+                    <a href="#">Signup</a>
+                </div>
+                <a style="width: 100px" id="navigate" href="./index.html" onclick="handleSubmit(event)">
+                    <input type="submit" value="login" />
+                </a>
+            </div>
+        </div>
+    </body>
+
+    <script>
+        const admin = {
+            username: "luc",
+            password: "!23"
+        };
+        const handleSubmit = (event) => {
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            if (username !== admin.username && password !== admin.password) {
+                event.preventDefault();
+                alert("wrong password or username"); 
+            }
+        }
+    </script>
+</html>

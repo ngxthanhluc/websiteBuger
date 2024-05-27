@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Burger store</title>
+
+    <!-- font awesome link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+    <!-- custom css file link -->
+    <link rel="stylesheet" href="./css/style.css">
+
+    <!-- link aos cdnjs, link second at here -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+</head>
+<body>
+    <div class="modal" id="modal">
+        <div class="modal-container">
+            <i onclick="handleClose()" class="fas fa-close icons"></i>
+            <div class="modal-image">
+                <img src="./image/blog-3.jpg" id="modal-img" alt="">
+            </div>
+            
+            <div class="modal-detail">
+                <p class="modal-title" id="modal-title">Burger Hải Sản - Đặc biệt thơm ngon</p>
+                <p class="modal-sub" id="modal-sub">Xốt Mayonnaise, Xốt Teriyaki, Phô Mai Mozzarella, Bạch Tuộc, Tôm, 
+                    Bắp Cải, Bột Rong Biển, Vẩy Cá Ngừ Bào
+                </p>
+                <hr>
+                <div class="modal-option">
+                    <div class="modal-detail-option">
+                        <p>Chọn cỡ bánh</p>
+                        <div class="modal-input">
+                            <input type="radio" name="size" id="size9-opt">
+                            <label>Cỡ 9 inch = <span id="price-size9-opt">189,000</span>₫</label>
+                        </div>
+                        <div class="modal-input">
+                            <input type="radio" name="size" id="size12-opt">
+                            <label id="vl">Cỡ 12 inch =  <span id="price-size12-opt">279,000</span>₫</label>
+                        </div>
+                    </div>
+                    <div class="modal-detail-option">
+                        <p>Tùy chọn thêm</p>
+                        <div class="modal-input">
+                            <input type="checkbox" name="more" id="cheese-opt">
+                            <label>Thêm phô mai = <span id="price-cheese-opt">15,000</span> ₫</label>
+                        </div>
+                        <div class="modal-input">
+                            <input type="checkbox" name="more" id="x2Cheese-opt">
+                            <label>Gấp đôi phô mai <span id="price-x2Cheese-opt">24,000</span>₫</label>
+                        </div>
+                        <div class="modal-input">
+                            <input type="checkbox" name="more" id="x3Cheese-opt">
+                            <label>Gấp ba phô mai <span id="price-x3Cheese-opt">27,000</span>₫</label>
+                        </div>
+                    </div>
+                    <div class="modal-btn">
+                        <input
+                            type="number"
+                            min=1
+                            className="lsOptionInput"
+                            placeholder="1"
+                        />
+                        <button onclick="handleAddProductToCart()">Thêm vào giỏ hàng</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="wrapper-cart" id="wrapper-cart">
+        <div class="cart" id="cart">
+            <div class="cart-container">
+                <i onclick="handleCloseCart()" class="fas fa-close icons"></i>
+                <div class="cart-list-burger" id="cart-list-burger">
+                    <!-- <div class="cart-product">
+                        <div class="wrap-cart-img">
+                            <div class="cart-img">
+                                <img src="./image/blog-3.jpg" id="modal-img" alt="">
+                            </div>
+                            <div class="cart-text">
+                                <p class="cart-text-name">burger 1</p>
+                                <p class="cart-text-price">100vnd   </p>
+                            </div>
+                        </div>
+                        <div class="amount">
+                            <span class="qt-minus" id="qt-minus" onclick="handleCalculate(-1)">-</span>
+                            <span class="qt" id="qt">1</span>
+                            <span class="qt-plus" onclick="handleCalculate(1)">+</span>
+                        </div>
+                    </div> -->
+                    <!-- Empty  -->
+                </div>
+                
+                <div class="cart-btn">
+                    <input
+                        type="text"
+                        min=1
+                        className="lsOptionInput"
+                        placeholder="100"
+                        disabled
+                    />
+                    <button onclick="cc()">Thanh toán</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Header section starts -->
+    <header class="header">
+        <div id="menu-btn" class="fas fa-bars icons"></div>
+        <div title="search" id="search-btn" class="fas fa-search icons"></div>
+
+        <nav class="navbar">
+            <a href="#home">home</a>
+            <a href="#menu">menu</a>
+            <a href="#about">about</a>
+            <span class="space"></span>
+            <a href="#reviews">reviews</a>
+            <a href="#contact">contact</a>
+            <a href="#blogs">blog</a>
+            <!-- <a id="logout" href="#" class="fa fa-right-from-bracket icons">Logout</a> -->
+        </nav>
+
+        <a title="logout" href="./login.html" class="fas fa-right-from-bracket icons"></a>
+
+
+        <a href="#home" class="logo"><img src="./image/logo.png" alt=""></a>
+
+        <form action="" class="search-form">
+            <input type="search" name="" placeholder="Search here..." id="search-box">
+            <label for="search-box" class="fas fa-search icons"></label>
+        </form>
+    </header>
+    <!-- Header section ends -->
+
+    <!-- Home section starts -->
+    <section class="home" id="home">
+        <div class="cart-fixed" title="cart" onclick="handleOpenCart()">
+            <i class="fas fa-shopping-cart"></i>
+        </div>
+
+        <div class="content">
+            <img data-aos="fade-up" data-aos-delay="150" src="./image/burger-baner.png" alt="">
+            <h3 data-aos="fade-up" data-aos-delay="300">So meaty you'll go crazy</h3>
+            <p data-aos="fade-up" data-aos-delay="450">Lorem ipsum dolor sit amet consectetur adipisicing edit. Dolores at fuga aliquam ipsa recusandae
+                repellat laudantium pariatur amet culpa cum.
+            </p>
+            <a data-aos="fade-up" data-aos-delay="600" href="#menu" class="btn">our menu</a>
+        </div>
+    </section>
+    <!-- Home section ends -->
+    
+    <!-- Services section starts -->
+    <section class="services">
+
+        <div class="box" data-aos="fade-up" data-aos-delay="150">
+            <i class="fas fa-hamburger"></i>
+            <h3>best quality</h3>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Incidunt, cum.</p>
+        </div>
+
+        <div class="box" data-aos="fade-up" data-aos-delay="150">
+            <i class="fas fa-shipping-fast"></i>
+            <h3>free delivery</h3>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Incidunt, cum.</p>
+        </div>
+
+        <div class="box" data-aos="fade-up" data-aos-delay="150">
+            <i class="fas fa-headset"></i>
+            <h3>24/7 support</h3>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Incidunt, cum.</p>
+        </div>
+
+    </section>
+    <!-- Services section ends -->
+
+    <!-- Menu section starts -->
+    <section class="menu" id="menu">
+
+        <div class="heading">
+            <img src="./image/title-img.png" alt="">
+            <h3>Our menu</h3>
+        </div>
+
+        <div class="box-container">
+
+            <div class="box" data-aos="fade-up" data-aos-delay="150">
+                <img src="./image/product-1.png" alt="">
+                <div class="content">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <h3>Cheese hamburger</h3>
+                    <div class="price">$29.99</div>
+                    <i class="btn" onclick="handleShowCart(0)">add to cart</i>
+                </div>
+            </div>
+
+            <div class="box" data-aos="fade-up" data-aos-delay="300">
+                <img src="./image/product-2.png" alt="">
+                <div class="content">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <h3>BALCONY HAMBURGER</h3>
+                    <div class="price">$29.99</div>
+                    <i class="btn" onclick="handleShowCart(1)">add to cart</i>
+                </div>
+            </div>
+
+            <div class="box" data-aos="fade-up" data-aos-delay="450">
+                <img src="./image/product-3.png" alt="">
+                <div class="content">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <h3>PATE HAMBURGER</h3>
+                    <div class="price">$19.99</div>
+                    <i class="btn" onclick="handleShowCart(2)">add to cart</i>
+                </div>
+            </div>
+
+            <div class="box" data-aos="fade-up" data-aos-delay="600">
+                <img src="./image/product-4.png" alt="">
+                <div class="content">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <h3>BEEF HAMBURGER</h3>
+                    <div class="price">$27.22</div>
+                    <i class="btn" onclick="handleShowCart(3)">add to cart</i>
+                </div>
+            </div>
+
+            <div class="box">
+                <img src="./image/product-5.png" alt="" data-aos="fade-up" data-aos-delay="750">
+                <div class="content">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <h3>NORMAL HAMBURGER</h3>
+                    <div class="price">$16.99</div>
+                    <i class="btn" onclick="handleShowCart(4)">add to cart</i>
+                </div>
+            </div>
+
+            <div class="box">
+                <img src="./image/product-6.png" alt="" data-aos="fade-up" data-aos-delay="900">
+                <div class="content">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <h3>MIX HAMBURGER</h3>
+                    <div class="price">$17.22</div>
+                    <i class="btn" onclick="handleShowCart(5)">add to cart</i>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <!-- Menu section ends -->
+
+     <!-- About section starts -->
+     <section class="about" id="about">
+        <div class="image" data-aos="fade-right" data-aos-delay="150">
+            <img src="./image/about-img.png" alt="">
+        </div>
+
+        <div class="content" data-aos="fade-left" data-aos-delay="300">
+            <h3 class="title">Step into burger heaven</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing edit. Dolores at fuga aliquam ipsa recusandae
+                repellat laudantium pariatur amet culpa cum.
+            </p>
+            <div class="icons">
+                <h3> <i class="fas fa-check"></i> Best Price </h3>
+                <h3> <i class="fas fa-check"></i> Best Service </h3>
+                <h3> <i class="fas fa-check"></i> Fresh Ingredient </h3>
+                <h3> <i class="fas fa-check"></i> Backed Buns </h3>
+                <h3> <i class="fas fa-check"></i> Natural cheese </h3>
+                <h3> <i class="fas fa-check"></i> Veg & Non-veg </h3>
+            </div>
+            <a href="#" class="btn">Read more</a>
+        </div>
+    </section>
+    <!-- About section ends -->
+
+    <!-- review section starts -->
+    <section class="reviews" id="reviews">
+        
+        <div class="heading">
+            <img src="./image/title-img.png" alt="">
+            <h3>Testimonials</h3>
+        </div>
+
+        <div class="box-container">
+
+            <div class="box" data-aos="fade-up" data-aos-delay="150">
+                <img src="./image/pic-1.png" alt="">
+                <h3>Jhon deo</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing edit. Dolores at fuga aliquam ipsa recusandae
+                    repellat laudantium pariatur amet culpa cum ?
+                </p>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+            </div>
+
+            <div class="box" data-aos="fade-up" data-aos-delay="300">
+                <img src="./image/pic-2.png" alt="">
+                <h3>Jhon deo</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing edit. Dolores at fuga aliquam ipsa recusandae
+                    repellat laudantium pariatur amet culpa cum ?
+                </p>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+            </div>
+
+            <div class="box" data-aos="fade-up" data-aos-delay="450">
+                <img src="./image/pic-3.png" alt="">
+                <h3>Jhon deo</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing edit. Dolores at fuga aliquam ipsa recusandae
+                    repellat laudantium pariatur amet culpa cum ?
+                </p>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+    <!-- review section ends -->
+
+    <!-- Contact section starts -->
+    <section class="contact" id="contact">
+
+        <div class="heading">
+            <img src="./image/title-img.png" alt="">
+            <h3>Contact us</h3>
+        </div>
+
+        <div class="row">
+
+            <iframe 
+                data-aos="fade-up" data-aos-delay="150"
+                class="map"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3873.214214475076!2d109.10514681414446!3d13.886135797909198!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x316f3e1cfdd2fc0f%3A0xcf2f40ae12c77e66!2zVHLGsOG7nW5nIFRIUFQgc-G7kSAxIEFuIE5oxqFu!5e0!3m2!1svi!2s!4v1642519370690!5m2!1svi!2s" 
+                allowfullscreen="" loading="lazy">
+            </iframe>
+            <!-- vào gg map, chọn địa điểm rồi ấn vào, ấn share, chọn nhúng bản đồ rồi copy mã html -->
+
+            <div class="form">
+                <div class="icons-container">
+                    <div class="icons" data-aos="fade-up" data-aos-delay="150">
+                        <i class="fas fa-map"></i>
+                        <h3>address :</h3>
+                        <p>Trường THPT số 1 An Nhơn</p>
+                    </div>
+
+                    <div class="icons" data-aos="fade-up" data-aos-delay="300">
+                        <i class="fas fa-envelope"></i>
+                        <h3>email :</h3>
+                        <p>shainkhanas@gmail.com</p>
+                        <p>shcsdaainkhanas@gmail.com</p>
+                    </div>
+
+                    <div class="icons" data-aos="fade-up" data-aos-delay="450">
+                        <i class="fas fa-phone"></i>
+                        <h3>phone :</h3>
+                        <p>+123-453-4121</p>
+                        <p>+112-453-4122</p>
+                    </div>
+                </div>
+
+                <form action="">
+                    <input data-aos="fade-up" data-aos-delay="150" type="text" placeholder="full name" class="box">
+                    <input data-aos="fade-up" data-aos-delay="300" type="email" placeholder="email" class="box">
+                    <input data-aos="fade-up" data-aos-delay="450" type="number" placeholder="phone" class="box">
+                    <textarea data-aos="fade-up" data-aos-delay="600" name="" placeholder="message" class="box" id="" cols="30" rows="10"></textarea>
+                    <input data-aos="fade-up" data-aos-delay="750" type="submit" value="send me message" class="btn">
+                </form>
+            </div>
+
+        </div>
+
+    </section>
+    <!-- Contact section ends -->
+
+    <!-- Blogs section starts-->
+    <section class="blogs" id="blogs">
+        
+        <div class="heading">
+            <img src="./image/title-img.png" alt="">
+            <h3>Daily posts</h3>
+        </div>
+
+        <div class="box-container">
+
+            <div class="box" data-aos="fade-up" data-aos-delay="150">
+                <div class="image">
+                    <img src="./image/blog-1.jpg" alt="">
+                    <div class="icons">
+                        <a href="#"> <i class="fas fa-calender"></i> 19st, January, 2022 </a>
+                        <a href="#"> <i class="fas fa-user"></i> by admin </a>
+                    </div>
+                </div>
+
+                <div class="content">
+                    <h3>blog title go here.</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing edit. Dolores at fuga aliquam ipsa recusandae
+                        repellat laudantium pariatur amet culpa cum ?
+                    </p>
+                    <a href="#" class="btn">Read more</a>
+                </div>
+            </div>
+
+            <div class="box" data-aos="fade-up" data-aos-delay="300">
+                <div class="image">
+                    <img src="./image/blog-2.jpg" alt="">
+                    <div class="icons">
+                        <a href="#"> <i class="fas fa-calender"></i> 19st, January, 2022 </a>
+                        <a href="#"> <i class="fas fa-user"></i> by admin </a>
+                    </div>
+                </div>
+
+                <div class="content">
+                    <h3>blog title go here.</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing edit. Dolores at fuga aliquam ipsa recusandae
+                        repellat laudantium pariatur amet culpa cum ?
+                    </p>
+                    <a href="#" class="btn">Read more</a>
+                </div>
+            </div>
+
+            <div class="box" data-aos="fade-up" data-aos-delay="450">
+                <div class="image">
+                    <img src="./image/blog-3.jpg" alt="">
+                    <div class="icons">
+                        <a href="#"> <i class="fas fa-calender"></i> 19st, January, 2022 </a>
+                        <a href="#"> <i class="fas fa-user"></i> by admin </a>
+                    </div>
+                </div>
+
+                <div class="content">
+                    <h3>blog title go here.</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing edit. Dolores at fuga aliquam ipsa recusandae
+                        repellat laudantium pariatur amet culpa cum ?
+                    </p>
+                    <a href="#" class="btn">Read more</a>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+    <!-- Blogs section ends-->
+
+    <!-- Footer section starts -->
+    <section class="footer">
+
+        <div class="link">
+            <a href="#home" class="btn">home</a>
+            <a href="#menu" class="btn">menu</a>
+            <a href="#about" class="btn">about</a>
+            <a href="#reviews" class="btn">reviews</a>
+            <a href="#contact" class="btn">contact</a>
+            <a href="#blogs" class="btn">blogs</a>
+        </div>
+
+        <p class="credit"> created by <span>mr. Ong Hoang</span> | all rights reserved! </p>
+
+    </section>
+    <!-- Footer section ends -->
+
+
+    <!-- custom js file link -->
+    <script src="./js/main.js" ></script>
+
+    <!-- link animate on scroll from cdnjs, link first at here  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+    <!-- code aos -->
+    <script>
+        // init duration animate for all
+        AOS.init({
+            duration: 800,
+        });
+
+        const burgerList = [
+            {
+                id: 1,
+                name: "CHEESE HAMBURGER",
+                desc: "so yummy",
+                img: "./image/product-1.png",
+                price: "$29.99"
+            },
+            {
+                id: 2,
+                name: "BALCONY HAMBURGER",
+                desc: "so yummy",
+                img: "./image/product-2.png",
+                price: "$29.99"
+            },
+            {
+                id: 3,
+                name: "PATE HAMBURGER",
+                desc: "so yummy",
+                img: "./image/product-3.png",
+                price: "$19.99"
+            },
+            {
+                id: 4,
+                name: "BEEF HAMBURGER",
+                desc: "so yummy",
+                img: "./image/product-4.png",
+                price: "$27.22"
+            },
+            {
+                id: 5,
+                name: "NORMAL HAMBURGER",
+                desc: "so yummy",
+                img: "./image/product-5.png",
+                price: "$16.99"
+            },
+            {
+                id: 6,
+                name: "MIX HAMBURGER",
+                desc: "so yummy",
+                img: "./image/product-6.png",
+                price: "$17.22"
+            },
+        ]
+
+        let cartList = []
+
+        let currentId = 0;
+
+        const handleAddProductToCart = () => {
+            // const optInputIngredientM = document.getElementById("cheese-opt")
+            // const optInputIngredientL = document.getElementById("x2Cheese-opt")
+            // const optInputIngredientXL = document.getElementById("x3Cheese-opt")
+
+            // const optInputSize9 = document.getElementById("size9-opt")
+            // const optInputSize12 = document.getElementById("size12-opt")
+
+            // const optPriceIngredientM = document.getElementById("price-cheese-opt")
+            // const optPriceIngredientL = document.getElementById("price-x2Cheese-opt")
+            // const optPriceIngredientXL = document.getElementById("price-x3Cheese-opt")
+
+            // const optPriceSize9 = document.getElementById("price-size9-opt")
+            // const optPriceSize12 = document.getElementById("price-size12-opt")
+
+            if(cartList.includes(currentId - 1)) {
+                alert("This item has been added to cart already")
+                return;
+            }
+
+            cartList.push(currentId - 1);
+            alert("item has been added to cart")
+            handleClose()
+            handleOpenCart()
+        }
+
+        const handleShowCart = (id) => {
+            const layout = document.getElementById("modal")
+            const img = document.getElementById("modal-img")
+            const name = document.getElementById("modal-title")
+            const des = document.getElementById("modal-sub")
+
+            layout.style.display = "flex";
+            img.src = burgerList[id].img
+            name.innerText = burgerList[id].name
+            des.innerText = burgerList[id].desc
+
+            currentId = burgerList[id].id;
+        }
+
+        const handleClose = () => {
+            const layout = document.getElementById("modal")
+            layout.style.display = "none";
+        }
+
+        window.onclick = (e) => {
+            const modal = document.getElementById("modal")
+            const wrapper = document.getElementById("wrapper-cart")
+            if(e.target == modal) 
+                handleClose()
+            else if(e.target == wrapper)
+                handleCloseCart()
+        }
+
+        const handleCloseCart = () => {
+            const cart = document.getElementById("cart")
+            cart.style.display = "none";
+        }
+
+        const handleOpenCart = () => {
+            const cart = document.getElementById("cart")
+            const product = document.getElementById("cart-list-burger")
+            cart.style.display = "block";
+
+            const cartListText = cartList.map((cart) => {
+                return `
+                    <div class="cart-product">
+                        <div class="wrap-cart-img">
+                            <div class="cart-img">
+                                <img src=${burgerList[cart].img} id="modal-img" alt="">
+                            </div>
+                            <div class="cart-text">
+                                <p class="cart-text-name">${burgerList[cart].name}</p>
+                                <p class="cart-text-price">${burgerList[cart].price}</p>
+                            </div>
+                        </div>
+                        <div class="amount">
+                            <span class="qt-minus ${burgerList[cart].id}" id="qt-minus" onclick="handleCalculate(-1, ${burgerList[cart].id})">-</span>
+                            <span class="qt ${burgerList[cart].id}" id="qt">1</span>
+                            <span class="qt-plus ${burgerList[cart].id}" onclick="handleCalculate(1, ${burgerList[cart].id})">+</span>
+                            <span class="qt-x ${burgerList[cart].id}" onclick="handleRemoveItem(${burgerList[cart].id})">x</span>
+                        </div>
+                    </div>
+                `
+            })
+
+            if(!cartListText.toString()) {
+                product.innerHTML = `<h1>Empty</h1>`
+                return
+            }
+
+            product.innerHTML = cartListText 
+        }
+
+        const handleRemoveItem = (id) => {
+            cartList = cartList.filter(cart => cart !== id - 1)
+
+            handleOpenCart()
+        }
+
+        const handleCalculate = (num, id) => {
+            const amount = document.getElementsByClassName(`qt ${id}`)[0]
+            const minus = document.getElementsByClassName(`qt-minus ${id}`)[0]
+            const value = parseInt(amount.innerText)
+            if(num === 1) {
+                amount.innerText = value + 1;
+            } else {
+                if(value <= 1) {
+                    return;
+                }
+                amount.innerText = value - 1;
+            }
+        }
+
+    </script>
+</body>
+</html>
